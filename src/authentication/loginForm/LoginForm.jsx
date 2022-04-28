@@ -43,11 +43,10 @@ function LoginForm(props) {
           />
 
           <p>
-            <span
-              className='spanButton'
-            > Register </span> - <span
-              className='spanButton'
-            > Forgot password
+            <span className='spanButton'>
+              Register
+            </span> - <span className='spanButton'>
+              Forgot password
             </span>
           </p>
 
