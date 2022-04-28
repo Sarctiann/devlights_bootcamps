@@ -5,8 +5,8 @@
 ---
 
 * What's React | project creation
-* Components | life cycles | class aproach
-* Hooks aproach | hooks life cycles
+* Components | lifecycle | class aproach
+* Hooks aproach | hooks lifecycle
   * Making a Login
   * Making a Success page
   * Making a Registration Page
