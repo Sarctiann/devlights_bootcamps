@@ -1,0 +1,19 @@
+.buttonCss {
+    font-size: 24px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    width: 90%;
+    height: 50px;
+    transition: 0.5s;
+}
+
+.buttonCss:hover {
+    background-color: #333333;
+}
+
+.buttonCss:active {
+    transition: 0s;
+    background-color: #555555;
+}

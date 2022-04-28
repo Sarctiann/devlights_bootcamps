@@ -1,0 +1,17 @@
+.successCss {
+    color: #ffffff;
+    background-color: #007777;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pButton {
+    cursor: pointer;
+}
+
+.pButton:hover {
+    color: #ee3333;
+}
