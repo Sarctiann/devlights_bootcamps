@@ -4,15 +4,17 @@
 
 ---
 
-* What's React | project creation
-* Components | lifecycle | class aproach
-* Hooks aproach | hooks lifecycle
-  * Making a Login
-  * Making a Success page
-  * Making a Registration Page
-  * Making a Password restoration Page
-* React Router Dom
-* Axios | HTTP interceptors with axios
+* [x] What's React | project creation
+* [x] Components | lifecycle | class aproach
+* [x] Hooks aproach | hooks lifecycle
+  * [x] Making a Login
+  * [x] Making a Success page
+  * [ ] Making a Registration Page
+  * [ ] Making a Password restoration Page
+* [x] props & state
+* [ ] React Router Dom
+* [ ] Axios | HTTP interceptors with axios
+* [ ] Context Api | local/session-Storage
 
 ---
 
