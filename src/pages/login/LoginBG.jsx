@@ -9,7 +9,7 @@ const LoginBG = styled('div')({
 
   backgroundImage: `url(${image})`,
   backgroundSize: 'cover',
-  backgroundPosition: 'left',
+  backgroundPosition: 'center center',
   backgroundColor: '#909090',
   backgroundBlendMode: 'multiply'
 })
