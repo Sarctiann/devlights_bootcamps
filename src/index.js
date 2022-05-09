@@ -1,12 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Auth from './authentication/Auth';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from './App';
+import UserContextWrapper from './contexts/UserContextWrapper'
+
+const root = createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Auth />
-  </React.StrictMode>
-);
+  <BrowserRouter>
+    <UserContextWrapper>
+      <App />
+    </UserContextWrapper>
+  </BrowserRouter>
+)
 
