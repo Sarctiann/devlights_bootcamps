@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 
@@ -7,10 +7,19 @@ import List from './pages/list';
 import Landing from './pages/landing';
 import { View, Pokemon } from './pages/view'
 
+import { UserContext } from './contexts/UserContextWrapper'
+
 
 const App = () => {
 
+  const { user } = useContext(UserContext)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    if (user?.email === 'sebas@ok.com') {
+      setIsLoggedIn(true)
+    }
+  }, [user])
 
   return (
     <CssBaseline enableColorScheme>
@@ -38,7 +47,7 @@ const App = () => {
           path='/login'
           element={isLoggedIn
             ? <Navigate to='/' replace={true} />
-            : <Login {...{setIsLoggedIn}} />
+            : <Login {...{ setIsLoggedIn }} />
           }
         />
       </Routes>

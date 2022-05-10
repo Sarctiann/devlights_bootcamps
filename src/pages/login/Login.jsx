@@ -7,10 +7,10 @@ import {
 } from '@mui/material'
 import { UserContext } from '../../contexts/UserContextWrapper'
 
-const Login = (props) => {
+const Login = () => {
 
   const [tempUser, setTempUser] = useState({ email: '', password: '' })
-  const [message, setMessage] = useState({message: '', severity: 'warning'})
+  const [message, setMessage] = useState({ message: '', severity: 'warning' })
   const { setUser } = useContext(UserContext)
   const navigate = useNavigate()
 
@@ -20,9 +20,9 @@ const Login = (props) => {
   }
 
   const handleMessage = (message, severity) => {
-    setMessage({message: message, severity: severity})
-    setTimeout(() =>{
-      setMessage({message: '', severity: severity})
+    setMessage({ message: message, severity: severity })
+    setTimeout(() => {
+      setMessage({ message: '', severity: severity })
     }, 2500)
   }
 
@@ -33,7 +33,7 @@ const Login = (props) => {
     }
     if (tempUser.email === '') {
       handleMessage('el campo "Email" no puede estar vacio', 'warning')
-      
+      setTempUser({ ...tempUser, password: '' })
       return
     }
     if (tempUser.password === '') {
@@ -44,10 +44,10 @@ const Login = (props) => {
       tempUser.email !== 'sebas@ok.com' || tempUser.password !== '123asd'
     ) {
       handleMessage('Credenciales Incorrectas', 'error')
+      setTempUser({ email: '', password: '' })
       return
     }
-    setUser({username: 'Sarctiann', email: 'sebas@ok.com'})
-    props.setIsLoggedIn(true)
+    setUser({ username: 'Sarctiann', email: tempUser.email })
   }
 
   return (
@@ -81,6 +81,9 @@ const Login = (props) => {
                   type='password'
                   value={tempUser.password}
                   onChange={handleChange}
+                  onKeyPress={
+                    e => { if (e.key === 'Enter') { handleClick() } }
+                  }
                 />
               </Grid>
 
