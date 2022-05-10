@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import LoginBG from './LoginBG'
+import Background from '../helpers/Background'
+import image from '../assets/login_bg.png'
 import {
   Grid, Paper, Typography, TextField, Button, Alert, Fade
 } from '@mui/material'
@@ -51,7 +52,7 @@ const Login = () => {
   }
 
   return (
-    <LoginBG>
+    <Background image={image}>
       <Grid container justifyContent='center' p={10}>
         <Grid item xs={12} md={6}>
           <Paper elevation={5}>
@@ -110,7 +111,7 @@ const Login = () => {
       <Grid container justifyContent='center' p={10}>
         <Grid item xs={12} md={6}>
           <Fade in={Boolean(message.message)} timeout={500}>
-            <Alert severity={message.severity} variant='outlined'>
+            <Alert severity={message.severity} variant='filled'>
               <Typography variant='h5' color='white'>
                 {message.message}
               </Typography>
@@ -118,7 +119,7 @@ const Login = () => {
           </Fade>
         </Grid>
       </Grid>
-    </LoginBG>
+    </Background>
   )
 }
 

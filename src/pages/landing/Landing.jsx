@@ -1,6 +1,11 @@
+import Background from "../helpers/Background"
+import image from "../assets/landing_bg.png"
+
 const Landing = () => {
   return (
-    'Landing Page'
+    <Background image={image}>
+      'Landing Page'
+    </Background>
   )
 }
 

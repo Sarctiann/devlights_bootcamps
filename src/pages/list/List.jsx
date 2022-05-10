@@ -1,6 +1,11 @@
+import Background from "../helpers/Background"
+import image from '../assets/list_bg.jpg'
+
 const List = () => {
   return (
-    'List Page'
+    <Background image={image}>
+      'List Page'
+    </Background>
   )
 }
 
