@@ -5,7 +5,8 @@ import { CssBaseline } from '@mui/material';
 import Login from './pages/login';
 import List from './pages/list';
 import Landing from './pages/landing';
-import { View, Pokemon } from './pages/view'
+import View from './pages/view'
+import NotFound from './pages/not_found';
 
 import { UserContext } from './contexts/UserContextWrapper'
 
@@ -24,6 +25,8 @@ const App = () => {
   return (
     <CssBaseline enableColorScheme>
       <Routes>
+
+        {/* List o Landing dependiendo de si está loggeado */}
         <Route
           path='/'
           element={isLoggedIn
@@ -31,18 +34,15 @@ const App = () => {
             : <Landing />
           }
         />
-        <Route
-          path='/pokemon'
-          element={isLoggedIn
-            ? <View />
-            : <Navigate to='/login' />
-          }
-        >
-          <Route
-            path=':id'
-            element={<Pokemon />}
-          />
-        </Route>
+
+        {/* View o Login dependiendo de si está loggeado */}
+        <Route path='/pokemon/:id' element={isLoggedIn
+          ? <View />
+          : <Login />
+        }
+        />
+
+        {/* Login si el usuario no está loggeado */}
         <Route
           path='/login'
           element={isLoggedIn
@@ -50,6 +50,13 @@ const App = () => {
             : <Login {...{ setIsLoggedIn }} />
           }
         />
+
+        {/* Manejando Paginas desconocidas */}
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+
       </Routes>
     </CssBaseline>
   )

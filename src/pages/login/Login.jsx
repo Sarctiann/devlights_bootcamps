@@ -89,7 +89,7 @@ const Login = () => {
               </Grid>
 
               <Grid item xs={12} md={6} align='center'>
-                <Button variant='contained' color='success' fullWidth
+                <Button variant='contained' color='primary' fullWidth
                   onClick={handleClick}
                 >
                   Ingresar
@@ -97,7 +97,7 @@ const Login = () => {
               </Grid>
 
               <Grid item xs={12} md={6} align='center'>
-                <Button variant='contained' fullWidth
+                <Button variant='contained' color='secondary' fullWidth
                   onClick={() => { navigate('/') }}
                 >
                   Volver al Inicio

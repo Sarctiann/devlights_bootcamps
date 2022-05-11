@@ -11,13 +11,14 @@ const Background = (props) => {
     backgroundImage: `url(${props.image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
-    filter: 'blur(3px)'
+    filter: 'blur(3px)',
+    zIndex: -1
   })
 
   return (
     <>
       <Bgimage />
-      <Box sx={{ position: 'fixed' }}>
+      <Box>
         {props.children}
       </Box>
     </>
