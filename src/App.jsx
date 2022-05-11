@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 
+import useFetchApi from './hooks/useFetchApi'
 import Login from './pages/login';
 import List from './pages/list';
 import Landing from './pages/landing';
@@ -15,6 +16,8 @@ const App = () => {
 
   const { user } = useContext(UserContext)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const apiObject = useFetchApi()
 
   useEffect(() => {
     if (user?.email === 'sebas@ok.com') {
@@ -30,7 +33,7 @@ const App = () => {
         <Route
           path='/'
           element={isLoggedIn
-            ? <List />
+            ? <List {...{apiObject}} />
             : <Landing />
           }
         />
