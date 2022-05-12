@@ -17,7 +17,7 @@ const App = () => {
   const { user } = useContext(UserContext)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const apiObject = useFetchApi()
+  const dataObject = useFetchApi()
 
   useEffect(() => {
     if (user?.email === 'sebas@ok.com') {
@@ -33,14 +33,14 @@ const App = () => {
         <Route
           path='/'
           element={isLoggedIn
-            ? <List {...{apiObject}} />
+            ? <List {...{ dataObject }} />
             : <Landing />
           }
         />
 
         {/* View o Login dependiendo de si está loggeado */}
         <Route path='/pokemon/:id' element={isLoggedIn
-          ? <View />
+          ? <View current={dataObject.current} />
           : <Login />
         }
         />

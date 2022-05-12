@@ -1,3 +1,0 @@
-language = "nodejs"
-run = "npm start"
-entry_point = "src/index.js"

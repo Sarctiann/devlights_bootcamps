@@ -3,11 +3,12 @@ import API from '../services/api'
 
 const useFetchApi = () => {
 
+  const [current, setCurrent] = useState(null)
   const [list, setList] = useState({})
   const [q, setQ] = useState({
     endpoint: 'pokemon',
     page: 0,
-    limit: 10
+    limit: 28
   })
 
   useMemo(() => {
@@ -18,9 +19,9 @@ const useFetchApi = () => {
         )
         if (res?.results) {
           setList({
-            result: res.results,
-            next: Boolean(res.next),
-            prev: Boolean(res.previous)
+            results: res.results,
+            disable_next: !Boolean(res.next),
+            disable_prev: !Boolean(res.previous)
           })
         }
       })()
@@ -30,7 +31,7 @@ const useFetchApi = () => {
     }
   }, [q])
 
-  return { list, setQ }
+  return { list, q, setQ, current, setCurrent }
 }
 
 export default useFetchApi
