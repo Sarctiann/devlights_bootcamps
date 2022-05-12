@@ -1,13 +1,14 @@
 import { useState, useContext, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { CssBaseline } from '@mui/material';
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { CssBaseline } from '@mui/material'
 
-import useFetchApi from './hooks/useFetchApi'
-import Login from './pages/login';
-import List from './pages/list';
-import Landing from './pages/landing';
+
+import AppBar from './pages/helpers/AppBar'
+import Login from './pages/login'
+import List from './pages/list'
+import Landing from './pages/landing'
 import View from './pages/view'
-import NotFound from './pages/not_found';
+import NotFound from './pages/not_found'
 
 import { UserContext } from './contexts/UserContextWrapper'
 
@@ -16,8 +17,6 @@ const App = () => {
 
   const { user } = useContext(UserContext)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const dataObject = useFetchApi()
 
   useEffect(() => {
     if (user?.email === 'sebas@ok.com') {
@@ -29,36 +28,43 @@ const App = () => {
     <CssBaseline enableColorScheme>
       <Routes>
 
-        {/* List o Landing dependiendo de si está loggeado */}
         <Route
-          path='/'
-          element={isLoggedIn
-            ? <List {...{ dataObject }} />
-            : <Landing />
+          path=''
+          element={<AppBar {...{ setIsLoggedIn }} />}
+        >
+
+          {/* List o Landing dependiendo de si está loggeado */}
+          <Route
+            path='/'
+            element={isLoggedIn
+              ? <List />
+              : <Landing />
+            }
+          />
+
+          {/* View o Login dependiendo de si está loggeado */}
+          <Route path='/pokemon/:id' element={isLoggedIn
+            ? <View />
+            : <Login />
           }
-        />
+          />
 
-        {/* View o Login dependiendo de si está loggeado */}
-        <Route path='/pokemon/:id' element={isLoggedIn
-          ? <View current={dataObject.current} />
-          : <Login />
-        }
-        />
+          {/* Login si el usuario no está loggeado */}
+          <Route
+            path='/login'
+            element={isLoggedIn
+              ? <Navigate to='/' replace={true} />
+              : <Login {...{ setIsLoggedIn }} />
+            }
+          />
 
-        {/* Login si el usuario no está loggeado */}
-        <Route
-          path='/login'
-          element={isLoggedIn
-            ? <Navigate to='/' replace={true} />
-            : <Login {...{ setIsLoggedIn }} />
-          }
-        />
+          {/* Manejando Paginas desconocidas */}
+          <Route
+            path='*'
+            element={<NotFound />}
+          />
 
-        {/* Manejando Paginas desconocidas */}
-        <Route
-          path='*'
-          element={<NotFound />}
-        />
+        </Route>
 
       </Routes>
     </CssBaseline>

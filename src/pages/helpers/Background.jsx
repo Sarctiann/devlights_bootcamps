@@ -5,7 +5,7 @@ const Background = (props) => {
 
   const Bgimage = styled('div')({
     width: '100vw',
-    height: '100vh',
+    height: '95vh',
     position: 'fixed',
 
     backgroundImage: `url(${props.image})`,
@@ -18,7 +18,7 @@ const Background = (props) => {
   return (
     <>
       <Bgimage />
-      <Container maxWidth='100vw'>
+      <Container maxWidth='100vw' maxLength='95vh'>
         {props.children}
       </Container>
     </>

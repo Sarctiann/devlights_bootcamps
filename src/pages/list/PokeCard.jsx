@@ -3,12 +3,13 @@ import {
   Card, CardMedia, CardContent, CardActions, Typography, Button
 } from '@mui/material'
 
-const PokeCard = (props) => {
-
-  const { data, setCurrent } = props
+const PokeCard = ({ data }) => {
 
   const elID = data.url.split('/')[6]
   const navigate = useNavigate()
+
+  const image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/'
+  + `sprites/pokemon/other/official-artwork/${elID}.png`
 
   return (
     <Card variant='elevation'
@@ -20,7 +21,7 @@ const PokeCard = (props) => {
     >
       <CardMedia
         component='img'
-        image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${elID}.png`}
+        image={image}
         height='140'
         alt={data.name}
         sx={{ m: 0 }}
@@ -33,7 +34,6 @@ const PokeCard = (props) => {
       <CardActions>
         <Button variant='contained' size='small' color='secondary'
           onClick={() => {
-            setCurrent(elID)
             navigate(`/pokemon/${elID}`)
           }}
         >

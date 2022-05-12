@@ -1,46 +1,113 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Grid, Button } from '@mui/material'
+import { useNavigate, useParams } from 'react-router-dom'
+import {
+  Container, Grid, Button, Typography, Chip,
+  Card, CardMedia, CardContent, CardActions, CardHeader
+} from '@mui/material'
 
 import Background from "../helpers/Background"
 import API from '../../services/api'
 
 
-
-// Tengo que Reparar los bonotes de paginas
-  // Controlar numero de pagina
 // Tengo que agregar boton de Logout
 // Tengo que implementar la vista en Detalle
 
-const View = ({ current }) => {
+
+const View = () => {
 
   const navigate = useNavigate()
+  const { id } = useParams()
   const [data, setData] = useState({})
 
   useEffect(() => {
     try {
       (async () => {
-        const res = await API.get(`/pokemon/${current}`)
+        const res = await API.get(`/pokemon/${id}`)
         if (res?.abilities) {
           setData(res)
-          console.log(res)
         }
       })()
     }
     catch (err) {
       console.error(err)
     }
-  }, [current])
+  }, [id])
+
+  const image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/'
+    + `sprites/pokemon/other/official-artwork/${id}.png`
 
   return (
-    <Background image={
-      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${current}.png`
-    }>
-      <Button onClick={() => {
-        navigate('/')
-      }}>
-        Volver a la List
-      </Button>
+    <Background image={image}>
+      <Container maxWidth='md'>
+        <Grid container p={2}>
+
+          {data.abilities &&
+            <Grid item xs='auto'>
+              <Card variant='elevation'
+                sx={{
+                  border: '7px solid',
+                  borderColor: '#383242',
+                  borderRadius: '10px'
+                }}
+              >
+                <CardHeader
+                  avatar={<Chip color='warning' label={
+                    <Typography variant='h6'>
+                      {data.id}
+                    </Typography>
+                  } />}
+                  title={
+                    <Typography variant='h5' color='secondary'>
+                      {data.name[0].toUpperCase() + data.name.slice(1)}
+                    </Typography>
+                  }
+                />
+                <CardMedia
+                  component='img'
+                  image={image}
+                  height='300'
+                  alt={data.name}
+                  sx={{ m: 0 }}
+                />
+                <CardContent>
+                  <Typography variant='h6'>
+                    Types: {data.types.map((el) => {
+                      return <Chip label={
+                        <Typography variant='button'>
+                          {el.type.name}
+                        </Typography>
+                      } />
+                    })}
+                  </Typography>
+                  <Grid container p={1}>
+                    {data.stats.map((el) => {
+                      return (
+                        <Grid item xs={4}>
+                          <Chip color='info' label={
+                            <Typography variant='caption'>
+                              {el.stat.name}: {el.base_stat}
+                            </Typography>
+                          } />
+                        </Grid>
+                      )
+                    })}
+                  </Grid>
+                </CardContent>
+                <CardActions>
+                  <Button variant='contained' size='small' color='secondary'
+                    onClick={() => {
+                      navigate('/')
+                    }}
+                  >
+                    Volver a la Lista
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          }
+
+        </Grid>
+      </Container>
     </Background>
   )
 }

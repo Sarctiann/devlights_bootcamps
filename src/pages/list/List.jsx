@@ -1,20 +1,33 @@
 import { Grid, Stack, Button, TextField } from '@mui/material'
 
+import useFetchApi from '../../hooks/useFetchApi'
+
 import Background from "../helpers/Background"
 import image from '../assets/list_bg.jpg'
 import PokeCard from './PokeCard'
 
-const List = ({ dataObject }) => {
+const List = () => {
+
+  const dataObject = useFetchApi()
+  
+  const setQPage = (p) => {
+    dataObject.setQ({ ...dataObject.q, page: p })
+  }
+
+  const handleChangePage = (offset) => {
+
+    setQPage(dataObject.q.page + offset)
+  }
 
   return (
     <Background image={image}>
       <Grid container>
-        <Grid item p={2}>
+        <Grid item p={1}>
           <Button
             disabled={dataObject.list.disable_prev}
             variant='outlined'
             onClick={() => {
-              dataObject.setCurrent({ test: 1 })
+              handleChangePage(-1)
             }}
             sx={{ height: '100%' }}
           >
@@ -31,8 +44,9 @@ const List = ({ dataObject }) => {
                 color: 'orangered'
               }
             }}
+            value={dataObject.q.page}
             onChange={(e) => {
-              dataObject.setQ({ ...dataObject.q, page: e.target.value - 1 })
+              setQPage(parseInt(e.target.value))
             }}
           />
 
@@ -40,7 +54,7 @@ const List = ({ dataObject }) => {
             disabled={dataObject.list.disable_next}
             variant='outlined'
             onClick={() => {
-              dataObject.setCurrent({ test: 1 })
+              handleChangePage(1)
             }}
             sx={{ height: '100%' }}
           >
@@ -49,9 +63,9 @@ const List = ({ dataObject }) => {
         </Grid>
       </Grid>
       <Stack
-        sx={{ height: '88vh', overflow: 'auto' }}
+        sx={{ height: '83vh', overflow: 'auto' }}
       >
-        <Grid container justifyContent='center' p={{ xs: 1, md: 5 }}>
+        <Grid container justifyContent='center'>
           {dataObject?.list?.results?.map(el => {
             return (
               <Grid item p={1} key={el.name} >

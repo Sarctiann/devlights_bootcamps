@@ -3,11 +3,10 @@ import API from '../services/api'
 
 const useFetchApi = () => {
 
-  const [current, setCurrent] = useState(null)
   const [list, setList] = useState({})
   const [q, setQ] = useState({
     endpoint: 'pokemon',
-    page: 0,
+    page: 1,
     limit: 28
   })
 
@@ -15,7 +14,7 @@ const useFetchApi = () => {
     try {
       (async () => {
         const res = await API.get(
-          `${q.endpoint}?offset=${q.page * q.limit}&limit=${q.limit}`
+          `${q.endpoint}?offset=${(q.page - 1) * q.limit}&limit=${q.limit}`
         )
         if (res?.results) {
           setList({
@@ -31,7 +30,7 @@ const useFetchApi = () => {
     }
   }, [q])
 
-  return { list, q, setQ, current, setCurrent }
+  return { list, q, setQ }
 }
 
 export default useFetchApi
