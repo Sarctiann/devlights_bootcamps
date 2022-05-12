@@ -20,6 +20,7 @@ const AppBar = ({ setIsLoggedIn }) => {
     <>
       <Box sx={{
         display: 'flex',
+        flexGrow: true,
         justifyContent: 'right',
         height: '5vh',
         backgroundColor: 'secondary.light',

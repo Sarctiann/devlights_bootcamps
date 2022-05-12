@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
-  Container, Grid, Button, Typography, Chip,
+  Container, Grid, Button, Typography, Chip, Paper,
   Card, CardMedia, CardContent, CardActions, CardHeader
 } from '@mui/material'
 
@@ -70,28 +70,40 @@ const View = () => {
                   sx={{ m: 0 }}
                 />
                 <CardContent>
-                  <Typography variant='h6'>
+                  <Typography variant='h6' 
+                    sx={{
+                      margin: 1
+                    }}
+                  >
                     Types: {data.types.map((el) => {
-                      return <Chip label={
+                      return <Chip key={el.type.name} label={
                         <Typography variant='button'>
                           {el.type.name}
                         </Typography>
                       } />
                     })}
                   </Typography>
-                  <Grid container p={1}>
-                    {data.stats.map((el) => {
-                      return (
-                        <Grid item xs={4}>
-                          <Chip color='info' label={
-                            <Typography variant='caption'>
-                              {el.stat.name}: {el.base_stat}
-                            </Typography>
-                          } />
-                        </Grid>
-                      )
-                    })}
-                  </Grid>
+                    <Paper
+                      sx={{
+                        width: 250,
+                        backgroundColor: 'warning.light'
+                      }}
+                    >
+                      {data.stats.map((el) => {
+                        return (
+                          <Chip key={el.stat.name} p={1} color='info' 
+                            sx={{
+                              margin: 1
+                            }}
+                            label={
+                              <Typography variant='caption'>
+                                {el.stat.name}: {el.base_stat}
+                              </Typography>
+                            } 
+                          />
+                        )
+                      })}
+                    </Paper>
                 </CardContent>
                 <CardActions>
                   <Button variant='contained' size='small' color='secondary'
