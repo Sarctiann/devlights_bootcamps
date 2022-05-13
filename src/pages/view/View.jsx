@@ -43,7 +43,7 @@ const View = () => {
 
           {data.abilities &&
             <Grid item xs='auto'>
-              <Card variant='elevation'
+              <Card variant='elevation' align='center'
                 sx={{
                   border: '7px solid',
                   borderColor: '#383242',
@@ -65,9 +65,12 @@ const View = () => {
                 <CardMedia
                   component='img'
                   image={image}
-                  height='300'
+                  height='200'
                   alt={data.name}
-                  sx={{ m: 0 }}
+                  sx={{ 
+                    marginX: 2,
+                    width: 200
+                  }}
                 />
                 <CardContent>
                   <Typography variant='h6' 
@@ -85,15 +88,16 @@ const View = () => {
                   </Typography>
                     <Paper
                       sx={{
-                        width: 250,
+                        width: 300,
                         backgroundColor: 'warning.light'
                       }}
                     >
                       {data.stats.map((el) => {
                         return (
-                          <Chip key={el.stat.name} p={1} color='info' 
+                          <Chip key={el.stat.name} color='info' 
                             sx={{
-                              margin: 1
+                              marginX: 1,
+                              marginY: 0.5
                             }}
                             label={
                               <Typography variant='caption'>
