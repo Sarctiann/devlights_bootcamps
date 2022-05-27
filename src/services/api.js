@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'https://pokeapi.co/api/v2/',
+    baseURL: 'https://api.openweathermap.org/data/2.5/forecast?q=corrientes&lang=es&appid=8a5e9515a6583a0a93a8e614d848ffb5',
     timeout: 5000,
 })
 
