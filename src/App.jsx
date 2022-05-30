@@ -1,31 +1,33 @@
-import { useEffect } from 'react'
-import { Routes, Route } from 'react-router'
-// import { useQuery } from 'react-query'
+import { Routes, Route, useLocation } from 'react-router'
 
-import API from './services/api'
+import Dashboard from './pages/Dashboard'
+import City from './pages/City'
+import NotFound from './pages/NotFound'
+import city_ids from './helpers/city_ids'
 
 const App = () => {
 
-  // const query = useQuery()
-
-  useEffect(()=> {
-    (async () => {
-      try {
-        const res = await API.get('?q=corrientes') 
-        console.log(res)
-      }
-      catch (err) {
-        console.error(err)
-      }
-    })()
-  })
+  const location = useLocation()
+  const isAbailableCity = Object.keys(city_ids).includes(
+    location?.pathname.replace('/', '').toLowerCase()
+  )
 
   return (
-      <Routes>
-
-        <Route path=''element={<h1>hola</h1>} />
-
-      </Routes>
+    <Routes>
+      <Route
+        path='/'
+        element={<Dashboard />}
+      >
+        <Route
+          path=':city'
+          element={isAbailableCity ? <City /> : <NotFound />}
+        />
+      </Route>
+      <Route
+        path='*'
+        element={<NotFound />}
+      />
+    </Routes>
   )
 }
 
