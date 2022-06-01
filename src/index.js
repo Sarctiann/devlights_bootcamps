@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
- import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import './index.css'
 
 import App from './App';
 
@@ -11,7 +12,7 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <App />
-    </QueryClientProvider> 
+    </QueryClientProvider>
   </BrowserRouter>
 )
 
