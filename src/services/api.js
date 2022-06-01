@@ -20,7 +20,7 @@ API.interceptors.request.use(
 const api = {
     get_weather: async (id) => {
         try {
-            const res = await API.get(`weather?id=${id}&lang=es`)
+            const res = await API.get(`weather?id=${id}&lang=es&unit=metric`)
             if (res['data']) {
                 return await res.data
             }
@@ -31,7 +31,7 @@ const api = {
     },
     get_forecast: async (id) => {
         try {
-            const res = await API.get(`forecast?id=${id}&lang=es`)
+            const res = await API.get(`forecast?id=${id}&lang=es&unit=metric`)
             if (res['data']) {
                 return await res.data
             }

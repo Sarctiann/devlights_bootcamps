@@ -1,7 +1,22 @@
-{
-    "posadas": 3429886,
-    "corrientes": 3435217,
-    "la-paz": 3432079,
-    "resistencia": 3429577,
-    "santa-fe": 3836277
-}
+[
+    {
+        "name": "posadas",
+        "id": 3429886
+    },
+    {
+        "name": "corrientes",
+        "id": 3435217
+    },
+    {
+        "name": "la-paz",
+        "id": 3432079
+    },
+    {
+        "name": "resistencia",
+        "id": 3429577
+    },
+    {
+        "name": "santa-fe",
+        "id": 3836277
+    }
+]
