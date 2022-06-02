@@ -1,0 +1,51 @@
+.appContainer {
+    @include _box;
+    max-width: 100vw;
+    min-width: 30em;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin: auto;
+}
+
+.box {
+    @include _box;
+    border: 2px solid $secondary;
+    border-radius: 10px;
+    background-color: lighten($background, 5%);
+}
+
+.weather-box {
+    @include _box;
+    display: flex;
+    flex-grow: 0;
+    text-align: right;
+    align-items: center;
+}
+
+.little-box {
+    width: 6em;
+    text-align: right;
+    border-radius: 10px;
+    margin: auto;
+    padding: 0em 0.5em 0em 0.5em;
+}
+
+.heading {
+    display: block;
+    text-align: center;
+}
+
+.morning {
+    color: black;
+    background: linear-gradient(25deg, $morning 50%, $background 100%);
+}
+
+.night {
+    color: white;
+    background: linear-gradient(25deg, $night 50%, $background 100%);
+}
+
+.img-abs {
+    position: absolute;
+}
