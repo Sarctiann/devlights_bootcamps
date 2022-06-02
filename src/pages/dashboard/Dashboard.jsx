@@ -23,8 +23,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='dashboard'>
-      <h1>Dashboard</h1>
+    <div className='appContainer'>
+      <h1 className='heading'>Weather App Dashboard</h1>
 
       <select value={selected} onChange={handleChangeSelect}>
         {city_ids.map(city => {

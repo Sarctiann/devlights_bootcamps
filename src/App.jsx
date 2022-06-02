@@ -5,6 +5,8 @@ import City from './pages/city'
 import NotFound from './pages/notFound'
 import city_ids from './helpers/city_ids'
 
+import './styles/App.scss'
+
 const App = () => {
 
   const location = useLocation()

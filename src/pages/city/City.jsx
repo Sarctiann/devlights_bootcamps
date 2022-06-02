@@ -4,6 +4,8 @@ import { useQuery } from 'react-query'
 
 import API from '../../services/api'
 import city_ids from '../../helpers/city_ids'
+import CurrentWeather from './components/CurrentWeather'
+import ForecastFiveDays from './components/ForecastFiveDays'
 
 const City = () => {
 
@@ -24,18 +26,10 @@ const City = () => {
 
   return (
     <div>
-      <h3>Current City</h3>
-      <p>{JSON.stringify(weather.data)}</p>
-      <p>{JSON.stringify(forecast.data)}</p>
+      <CurrentWeather data={weather.data} />
+      <ForecastFiveDays data={forecast.data} />
     </div>
   )
 }
 
 export default City
-
-// Notas: necesito representar los datos. está bien que no se toma en cuenta
-//  el diseño gráfico. Pero no se referian a esto jajaja
-
-// Para la temperatura tengo que restar 273.15 grados
-
-// Voy a intentar utilizar scss modules
